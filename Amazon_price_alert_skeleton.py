@@ -12,13 +12,13 @@ price_current = product.price_and_currency[0]
 price_expected = 100 # change to your expected price
 
 
-def message(msg):
+def send_message(msg):
     account_sid = "[your Twilio Account SID]"
     auth_token = "[your Twilio Auth Token]"
     client = TwilioRestClient(account_sid, auth_token)
-    message = client.messages.create(body=msg,
-                                     to="+[your phone number]",
-                                     frm="+[your Twilio number]")
+    client.messages.create(body=msg,
+                           to="+[your phone number]",
+                           frm="+[your Twilio number]")
 
 
 def send_email(title, price):
@@ -44,5 +44,5 @@ def send_email(title, price):
 
 
 if (price_current <= price_expected):
-    message(product_title)
+    send_message(product_title)
     send_email(product_title, price_current)
